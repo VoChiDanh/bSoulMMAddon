@@ -1,0 +1,7 @@
+name: bSoulMMAddon
+version: '${project.version}'
+main: net.danh.bsoulmmaddon.bSoulMMAddon
+api-version: 1.13
+depend: [ bSoul, MythicMobs, ProtocolLib ]
+authors: [ VoChiDanh ]
+description: Addon Support MythicMobs for BSoul
