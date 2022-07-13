@@ -1,5 +1,6 @@
 package net.danh.bsoulmmaddon.Events;
 
+import io.lumine.xikage.mythicmobs.api.bukkit.BukkitAPIHelper;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
 import net.danh.bsoul.Manager.Data;
 import org.bukkit.entity.Animals;
@@ -60,6 +61,10 @@ public class MobDeath implements Listener {
         }
         if (!getconfigfile().getBoolean("MOBS.ENABLE")) {
             debug("MOBS.ENABLE doesn't enable");
+            return;
+        }
+        if (new BukkitAPIHelper().isMythicMob(mob)) {
+            debug("Is MythicMobs mobs");
             return;
         }
         if (mob instanceof Animals) {
