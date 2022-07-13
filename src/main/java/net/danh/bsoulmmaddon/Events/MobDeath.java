@@ -1,9 +1,7 @@
 package net.danh.bsoulmmaddon.Events;
 
-import io.lumine.mythic.bukkit.BukkitAPIHelper;
-import io.lumine.mythic.bukkit.events.MythicMobDeathEvent;
+import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
 import net.danh.bsoul.Manager.Data;
-import net.danh.bsoulmmaddon.bSoulMMAddon;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -47,7 +45,7 @@ public class MobDeath implements Listener {
             double real_chance = Math.random() * 100.0D;
             if (chance >= real_chance) {
                 Data.addSoul(p, soul);
-                sendPlayerMessage(p, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", e.getMob().getName()));
+                sendPlayerMessage(p, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", e.getMob().getDisplayName()));
             }
         }
     }
