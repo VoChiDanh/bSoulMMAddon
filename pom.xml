@@ -81,6 +81,10 @@
             <id>lumine-repo</id>
             <url>https://mvn.lumine.io/repository/maven-public/</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -91,11 +95,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>net.danh</groupId>
+            <groupId>com.github.D-x-Z</groupId>
             <artifactId>bSoul</artifactId>
-            <version>2.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/bSoul.jar</systemPath>
+            <version>39aa543d68</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.lumine</groupId>

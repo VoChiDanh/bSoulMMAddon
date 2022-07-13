@@ -14,6 +14,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.Objects;
 
+import static net.danh.bsoul.Manager.Debug.debug;
 import static net.danh.bsoul.Manager.Resources.*;
 import static net.danh.dcore.Random.Number.getRandomInt;
 import static net.danh.dcore.Utils.Player.sendPlayerMessage;
@@ -35,7 +36,7 @@ public class MobDeath implements Listener {
                 return;
             }
             for (String getEntityType : Objects.requireNonNull(getmobfile().getConfigurationSection("MYTHICMOBS.")).getKeys(false)) {
-                if (mob.equalsIgnoreCase(getEntityType)) {
+                if (getEntityType.equalsIgnoreCase(mob)) {
                     max = getmobfile().getInt("MYTHICMOBS." + mob + ".MAX");
                     min = getmobfile().getInt("MYTHICMOBS." + mob + ".MIN");
                     chance = getmobfile().getInt("MYTHICMOBS." + mob + ".CHANCE");
@@ -60,40 +61,44 @@ public class MobDeath implements Listener {
             return;
         }
         if (!getconfigfile().getBoolean("MOBS.ENABLE")) {
+            debug("MOBS.ENABLE doesn't enable");
             return;
         }
-        if (bSoulMMAddon.getInstance().getServer().getPluginManager().getPlugin("MythicMobs") != null) {
-            BukkitAPIHelper bukkitAPIHelper = new BukkitAPIHelper();
-            if (bukkitAPIHelper.isMythicMob(mob)) {
-                return;
-            }
-        }
         if (mob instanceof Animals) {
+            debug("Mobs is animals");
             if (!getconfigfile().getBoolean("MOBS.ANIMAL")) {
+                debug("Mobs Animal doesn't enable");
                 return;
             }
         }
         if (mob instanceof Monster) {
+            debug("Mobs is Monster");
             if (!getconfigfile().getBoolean("MOBS.MONSTER")) {
+                debug("Mobs monster doesn't enable");
                 return;
             }
         }
         int max = getmobfile().getInt("VANILLA.DEFAULT.MAX");
         int min = getmobfile().getInt("VANILLA.DEFAULT.MIN");
-        double chance = getmobfile().getInt("VANILLA.DEFAULT.CHANCE");
+        double chance = getmobfile().getDouble("VANILLA.DEFAULT.CHANCE");
         if (max == 0 && min == 0 && chance == 0.0) {
             return;
         }
-        for (String getEntityType : Objects.requireNonNull(getmobfile().getConfigurationSection("Vanilla.")).getKeys(false)) {
-            if (vanillamobs.equalsIgnoreCase(getEntityType)) {
+        for (String getEntityType : Objects.requireNonNull(getmobfile().getConfigurationSection("VANILLA")).getKeys(false)) {
+            if (getEntityType.equalsIgnoreCase(vanillamobs)) {
                 max = getmobfile().getInt("VANILLA." + vanillamobs + ".MAX");
                 min = getmobfile().getInt("VANILLA." + vanillamobs + ".MIN");
-                chance = getmobfile().getInt("VANILLA." + vanillamobs + ".CHANCE");
+                chance = getmobfile().getDouble("VANILLA." + vanillamobs + ".CHANCE");
                 break;
             }
         }
+        debug("Max = " + max);
+        debug("Min = " + min);
+        debug("Chance = " + chance);
         int soul = getRandomInt(min, max);
+        debug("Soul = " + soul);
         double real_chance = Math.random() * 100.0D;
+        debug("Real Chance = " + real_chance);
         if (chance >= real_chance) {
             Data.addSoul(player, soul);
             sendPlayerMessage(player, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", mob.getName()));
