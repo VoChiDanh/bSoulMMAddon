@@ -19,8 +19,8 @@ jobs:
         with:
           name: "[DevBuild]-bSoulMMAddon"
           path: |
-            ./target/bSMMA_v1/bSoulMMAddon_v1.jar
-            ./target/bSMMA_v2/bSoulMMAddon_v2.jar
+            bSMMA_v1/target/bSoulMMAddon_v1.jar
+            bSMMA_v2/target/bSoulMMAddon_v2.jar
             README.md
       - uses: jungwinter/split@v2
         id: split
@@ -43,5 +43,5 @@ jobs:
           embed-description: |
             ${{ github.event.head_commit.message }}
             
-            Download: [`Build #${{github.run_number}}`](https://nightly.link/${{github.repository}}/actions/runs/${{ github.run_id }}/[DevBuild]-Storage.zip)
+            Download: [`Build #${{github.run_number}}`](https://nightly.link/${{github.repository}}/actions/runs/${{ github.run_id }}/[DevBuild]-bSoulMMAddon.zip)
             SpigotMC: [`102500`](https://www.spigotmc.org/resources/102500/)
