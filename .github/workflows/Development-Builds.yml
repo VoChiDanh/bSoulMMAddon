@@ -21,7 +21,7 @@ jobs:
           path: |
             bSMMA_v1/target/bSoulMMAddon_v1.jar
             bSMMA_v2/target/bSoulMMAddon_v2.jar
-            README.md
+            README.yml
       - uses: jungwinter/split@v2
         id: split
         with:
