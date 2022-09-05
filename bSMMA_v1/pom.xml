@@ -4,16 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.danh</groupId>
-    <artifactId>bSoulMMAddon</artifactId>
-    <version>1.0</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>bSMMA_v1</module>
-        <module>bSMMA_v2</module>
-    </modules>
+    <parent>
+        <artifactId>bSoulMMAddon</artifactId>
+        <groupId>net.danh</groupId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>bSoulMMAddon_v1</artifactId>
+    <packaging>jar</packaging>
 
-    <name>bSoulMMAddon</name>
+    <name>bSoulMMAddon_v1</name>
 
     <description>Addon Support MythicMobs for BSoul</description>
 
@@ -23,6 +22,7 @@
     </properties>
 
     <build>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -92,9 +92,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.D-x-Z</groupId>
-            <artifactId>bSoul</artifactId>
-            <version>c6fd719496</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.lumine.xikage</groupId>
+            <artifactId>MythicMobs</artifactId>
+            <version>4.1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

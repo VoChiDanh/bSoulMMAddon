@@ -4,25 +4,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.danh</groupId>
-    <artifactId>bSoulMMAddon</artifactId>
-    <version>1.0</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>bSMMA_v1</module>
-        <module>bSMMA_v2</module>
-    </modules>
+    <parent>
+        <artifactId>bSoulMMAddon</artifactId>
+        <groupId>net.danh</groupId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>bSoulMMAddon_v2</artifactId>
+    <packaging>jar</packaging>
 
-    <name>bSoulMMAddon</name>
+    <name>bSoulMMAddon_v2</name>
 
     <description>Addon Support MythicMobs for BSoul</description>
 
     <properties>
-        <java.version>8</java.version>
+        <java.version>16</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -71,30 +71,17 @@
         </resources>
     </build>
 
-    <repositories>
-        <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>lumine-repo</id>
-            <url>https://mvn.lumine.io/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
-            <groupId>com.github.D-x-Z</groupId>
-            <artifactId>bSoul</artifactId>
-            <version>c6fd719496</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.lumine</groupId>
+            <artifactId>Mythic-Dist</artifactId>
+            <version>5.1.4</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

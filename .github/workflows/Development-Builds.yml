@@ -6,9 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up JDK 16
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: '16'
           distribution: 'adopt'
@@ -19,7 +19,9 @@ jobs:
         with:
           name: "[DevBuild]-bSoulMMAddon"
           path: |
-            ./target/bSoulMMAddon.jar
+            ./target/bSMMA_v1/bSoulMMAddon_v1.jar
+            ./target/bSMMA_v2/bSoulMMAddon_v2.jar
+            README.md
       - uses: jungwinter/split@v2
         id: split
         with:

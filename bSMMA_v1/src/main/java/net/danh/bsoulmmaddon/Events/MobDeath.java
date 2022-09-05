@@ -1,7 +1,7 @@
 package net.danh.bsoulmmaddon.Events;
 
-import io.lumine.mythic.bukkit.BukkitAPIHelper;
-import io.lumine.mythic.bukkit.events.MythicMobDeathEvent;
+import io.lumine.xikage.mythicmobs.api.bukkit.BukkitAPIHelper;
+import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
 import net.danh.bsoul.Manager.Data;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.LivingEntity;
@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.Objects;
+import java.util.Random;
 
 import static net.danh.bsoul.Manager.Debug.debug;
 import static net.danh.bsoul.Manager.Resources.*;
@@ -48,11 +49,11 @@ public class MobDeath implements Listener {
             debug("Chance = " + chance);
             int soul = getRandomInt(min, max);
             debug("Soul = " + soul);
-            double real_chance = Math.random() * 100.0D;
+            double real_chance = new Random().nextInt(100);
             debug("Real Chance = " + real_chance);
             if (chance >= real_chance) {
                 Data.addSoul(p, soul);
-                sendPlayerMessage(p, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", e.getMob().getDisplayName()));
+                sendPlayerMessage(p, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", String.valueOf(e.getMob().getType().getDisplayName())));
             }
         }
     }
@@ -70,7 +71,7 @@ public class MobDeath implements Listener {
             return;
         }
         if (new BukkitAPIHelper().isMythicMob(mob)) {
-            debug("Is MythicMobs mobs");
+            debug("MythicMobs mob");
             return;
         }
         if (mob instanceof Animals) {
@@ -106,7 +107,7 @@ public class MobDeath implements Listener {
         debug("Chance = " + chance);
         int soul = getRandomInt(min, max);
         debug("Soul = " + soul);
-        double real_chance = Math.random() * 100.0D;
+        double real_chance = new Random().nextInt(100);
         debug("Real Chance = " + real_chance);
         if (chance >= real_chance) {
             Data.addSoul(player, soul);
