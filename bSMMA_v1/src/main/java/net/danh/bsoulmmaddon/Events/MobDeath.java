@@ -23,37 +23,39 @@ public class MobDeath implements Listener {
 
     @EventHandler
     public void onMythicMobDeath(MythicMobDeathEvent e) {
-        Player p = (Player) e.getKiller();
-        String mob = e.getMobType().getInternalName();
-        if (p == null) {
-            return;
-        }
-        if (getconfigfile().getBoolean("HOOK.MYTHICMOBS")) {
-            debug("Hook MythicMobs: Enable");
-            int max = getmobfile().getInt("MYTHICMOBS.DEFAULT.MAX");
-            int min = getmobfile().getInt("MYTHICMOBS.DEFAULT.MIN");
-            double chance = getmobfile().getDouble("MYTHICMOBS.DEFAULT.CHANCE");
-            if (max == 0 && min == 0 && chance == 0.0) {
+        if (e.getKiller() instanceof Player) {
+            String mob = e.getMobType().getInternalName();
+            Player p = (Player) e.getKiller();
+            if (p == null) {
                 return;
             }
-            for (String getEntityType : Objects.requireNonNull(getmobfile().getConfigurationSection("MYTHICMOBS.")).getKeys(false)) {
-                if (getEntityType.equalsIgnoreCase(mob)) {
-                    max = getmobfile().getInt("MYTHICMOBS." + mob + ".MAX");
-                    min = getmobfile().getInt("MYTHICMOBS." + mob + ".MIN");
-                    chance = getmobfile().getDouble("MYTHICMOBS." + mob + ".CHANCE");
-                    break;
+            if (getconfigfile().getBoolean("HOOK.MYTHICMOBS")) {
+                debug("Hook MythicMobs: Enable");
+                int max = getmobfile().getInt("MYTHICMOBS.DEFAULT.MAX");
+                int min = getmobfile().getInt("MYTHICMOBS.DEFAULT.MIN");
+                double chance = getmobfile().getDouble("MYTHICMOBS.DEFAULT.CHANCE");
+                if (max == 0 && min == 0 && chance == 0.0) {
+                    return;
                 }
-            }
-            debug("Max = " + max);
-            debug("Min = " + min);
-            debug("Chance = " + chance);
-            int soul = getRandomInt(min, max);
-            debug("Soul = " + soul);
-            double real_chance = new Random().nextInt(100);
-            debug("Real Chance = " + real_chance);
-            if (chance >= real_chance) {
-                Data.addSoul(p, soul);
-                sendPlayerMessage(p, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", String.valueOf(e.getMob().getType().getDisplayName())));
+                for (String getEntityType : Objects.requireNonNull(getmobfile().getConfigurationSection("MYTHICMOBS.")).getKeys(false)) {
+                    if (getEntityType.equalsIgnoreCase(mob)) {
+                        max = getmobfile().getInt("MYTHICMOBS." + mob + ".MAX");
+                        min = getmobfile().getInt("MYTHICMOBS." + mob + ".MIN");
+                        chance = getmobfile().getDouble("MYTHICMOBS." + mob + ".CHANCE");
+                        break;
+                    }
+                }
+                debug("Max = " + max);
+                debug("Min = " + min);
+                debug("Chance = " + chance);
+                int soul = getRandomInt(min, max);
+                debug("Soul = " + soul);
+                double real_chance = new Random().nextInt(100);
+                debug("Real Chance = " + real_chance);
+                if (chance >= real_chance) {
+                    Data.addSoul(p, soul);
+                    sendPlayerMessage(p, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", String.valueOf(e.getMob().getType().getDisplayName())));
+                }
             }
         }
     }
