@@ -45,23 +45,7 @@ jobs:
             
             THIS BUILD FOR MYTHICMOBS V4 VERSION
             SpigotMC: [`102500`](https://www.spigotmc.org/resources/102500/)
-          file: "/bSoulMMAddon/bSMMA_v1/target/bSoulMMAddon_v1.jar"
-      - name: Upload new version
-        uses: tsickert/discord-webhook@v5.4.0
-        with:
-          webhook-url: ${{ secrets.WEBHOOK_URL }}
-          username: "${{ steps.split.outputs._0 }}"
-          embed-title: "${{ github.actor }} pushed an update for ${{ steps.split.outputs._1 }}"
-          avatar-url: "https://github.com/${{ steps.split.outputs._0 }}.png"
-          embed-color: "65280"
-          embed-author-name: "${{ github.actor }}"
-          embed-author-url: "https://github.com/${{ github.actor }}"
-          embed-author-icon-url: "https://github.com/${{ github.actor }}.png"
-          embed-footer-text: "Build #${{github.run_number}} passed and waiting to be updated"
-          embed-footer-icon-url: "https://i.imgur.com/D5KVghH.png"
-          embed-description: |
-            ${{ github.event.head_commit.message }}
-            
-            THIS BUILD FOR MYTHICMOBS V5 VERSION
-            SpigotMC: [`102500`](https://www.spigotmc.org/resources/102500/)
-          file: "/bSoulMMAddon/bSMMA_v2/target/bSoulMMAddon_v2.jar"
+          filename: |
+            bSMMA_v1/target/bSoulMMAddon_v1.jar
+            bSMMA_v2/target/bSoulMMAddon_v2.jar
+            README.md
