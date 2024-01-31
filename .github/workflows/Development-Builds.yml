@@ -45,7 +45,18 @@ jobs:
             
             
             SpigotMC: [`102500`](https://www.spigotmc.org/resources/102500/)
-          file: |
-            bSMMA_v1/target/bSoulMMAddon_v1.jar
+      - name: Upload legacy version
+        uses: tsickert/discord-webhook@v4.0.0
+        with:
+          file: bSMMA_v1/target/bSoulMMAddon_v1.jar
             bSMMA_v2/target/bSoulMMAddon_v2.jar
             README.yml
+      - name: Upload new version
+        uses: tsickert/discord-webhook@v4.0.0
+        with:
+          file: bSMMA_v2/target/bSoulMMAddon_v2.jar
+            README.yml
+      - name: Upload readme
+        uses: tsickert/discord-webhook@v4.0.0
+        with:
+          file: README.yml
