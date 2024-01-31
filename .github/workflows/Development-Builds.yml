@@ -27,7 +27,7 @@ jobs:
         with:
           msg: ${{github.repository}}
           separator: "/"
-      - name: Upload legacy version
+      - name: Upload build
         uses: tsickert/discord-webhook@v5.4.0
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
@@ -43,9 +43,8 @@ jobs:
           embed-description: |
             ${{ github.event.head_commit.message }}
             
-            THIS BUILD FOR MYTHICMOBS V4 VERSION
             SpigotMC: [`102500`](https://www.spigotmc.org/resources/102500/)
           filename: |
-            bSMMA_v1/target/bSoulMMAddon_v1.jar
-            bSMMA_v2/target/bSoulMMAddon_v2.jar
+            /bSoulMMAddon/bSMMA_v1/target/bSoulMMAddon_v1.jar
+            /bSoulMMAddon/bSMMA_v2/target/bSoulMMAddon_v2.jar
             README.md
