@@ -49,8 +49,6 @@ jobs:
         uses: tsickert/discord-webhook@v4.0.0
         with:
           file: bSMMA_v1/target/bSoulMMAddon_v1.jar
-            bSMMA_v2/target/bSoulMMAddon_v2.jar
-            README.yml
       - name: Upload new version
         uses: tsickert/discord-webhook@v4.0.0
         with:
