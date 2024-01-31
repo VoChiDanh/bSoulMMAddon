@@ -28,7 +28,7 @@ jobs:
           msg: ${{github.repository}}
           separator: "/"
       - name: Upload legacy version
-        uses: tsickert/discord-webhook@v5
+        uses: tsickert/discord-webhook@v5.4.0
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
           username: "${{ steps.split.outputs._0 }}"
@@ -47,7 +47,7 @@ jobs:
             SpigotMC: [`102500`](https://www.spigotmc.org/resources/102500/)
           file: "bSMMA_v1/target/bSoulMMAddon_v1.jar"
       - name: Upload new version
-        uses: tsickert/discord-webhook@v5
+        uses: tsickert/discord-webhook@v5.4.0
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
           username: "${{ steps.split.outputs._0 }}"
