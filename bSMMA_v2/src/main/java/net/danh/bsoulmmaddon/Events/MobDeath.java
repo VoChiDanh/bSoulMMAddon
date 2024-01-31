@@ -33,7 +33,7 @@ public class MobDeath implements Listener {
                 if (max == 0 && min == 0 && chance == 0.0) {
                     return;
                 }
-                for (String getEntityType : Objects.requireNonNull(getmobfile().getConfigurationSection("MYTHICMOBS.")).getKeys(false)) {
+                for (String getEntityType : Objects.requireNonNull(getmobfile().getConfigurationSection("MYTHICMOBS")).getKeys(false)) {
                     if (getEntityType.equalsIgnoreCase(mob)) {
                         max = getmobfile().getInt("MYTHICMOBS." + mob + ".MAX");
                         min = getmobfile().getInt("MYTHICMOBS." + mob + ".MIN");
@@ -49,8 +49,9 @@ public class MobDeath implements Listener {
                 double real_chance = new Random().nextInt(100);
                 debug("Real Chance = " + real_chance);
                 if (chance >= real_chance) {
-                    Data.addSoul(p, soul);
-                    sendPlayerMessage(p, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", e.getMob().getDisplayName()));
+                    if (Data.addSoul(p, soul)) {
+                        sendPlayerMessage(p, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", e.getMob().getDisplayName()));
+                    }
                 }
             }
         }
@@ -108,8 +109,9 @@ public class MobDeath implements Listener {
         double real_chance = new Random().nextInt(100);
         debug("Real Chance = " + real_chance);
         if (chance >= real_chance) {
-            Data.addSoul(player, soul);
-            sendPlayerMessage(player, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", mob.getName()));
+            if (Data.addSoul(player, soul)) {
+                sendPlayerMessage(player, Objects.requireNonNull(getlanguagefile().getString("KILL_MOB")).replaceAll("%soul%", String.format("%,d", soul)).replaceAll("%mob%", mob.getName()));
+            }
         }
     }
 }

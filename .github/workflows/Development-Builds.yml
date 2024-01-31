@@ -43,5 +43,9 @@ jobs:
           embed-description: |
             ${{ github.event.head_commit.message }}
             
-            Download: [`Build #${{github.run_number}}`](https://nightly.link/${{github.repository}}/actions/runs/${{ github.run_id }}/%5B%23${{github.run_number}}%5D-bSoulMMAddon.zip)
+            
             SpigotMC: [`102500`](https://www.spigotmc.org/resources/102500/)
+          file: |
+            bSMMA_v1/target/bSoulMMAddon_v1.jar
+            bSMMA_v2/target/bSoulMMAddon_v2.jar
+            README.yml
