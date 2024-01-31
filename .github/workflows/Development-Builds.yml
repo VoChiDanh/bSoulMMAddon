@@ -27,7 +27,7 @@ jobs:
         with:
           msg: ${{github.repository}}
           separator: "/"
-      - name: Upload build
+      - name: Build
         uses: tsickert/discord-webhook@v5.4.0
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
@@ -44,7 +44,17 @@ jobs:
             ${{ github.event.head_commit.message }}
             
             SpigotMC: [`102500`](https://www.spigotmc.org/resources/102500/)
-          filename: |
-            /bSoulMMAddon/bSMMA_v1/target/bSoulMMAddon_v1.jar
-            /bSoulMMAddon/bSMMA_v2/target/bSoulMMAddon_v2.jar
-            README.md
+      - name: Legacy
+        uses: tsickert/discord-webhook@v5.4.0
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          username: "${{ steps.split.outputs._0 }}"
+          avatar-url: "https://github.com/${{ steps.split.outputs._0 }}.png"
+          filename: "bSMMA_v1/target/bSoulMMAddon_v1.jar"
+      - name: New
+        uses: tsickert/discord-webhook@v5.4.0
+        with:
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
+          username: "${{ steps.split.outputs._0 }}"
+          avatar-url: "https://github.com/${{ steps.split.outputs._0 }}.png"
+          filename: "bSMMA_v2/target/bSoulMMAddon_v2.jar"
