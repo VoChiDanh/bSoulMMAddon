@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 16
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '16'
+          java-version: '17'
           distribution: 'adopt'
           cache: maven
       - name: Build with Maven
@@ -28,7 +28,7 @@ jobs:
           msg: ${{github.repository}}
           separator: "/"
       - name: Build
-        uses: tsickert/discord-webhook@v5.4.0
+        uses: tsickert/discord-webhook@v6.0.0
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
           username: "${{ steps.split.outputs._0 }}"
@@ -52,7 +52,7 @@ jobs:
           avatar-url: "https://github.com/${{ steps.split.outputs._0 }}.png"
           filename: "bSMMA_v1/target/bSoulMMAddon_v1.jar"
       - name: New
-        uses: tsickert/discord-webhook@v5.4.0
+        uses: tsickert/discord-webhook@v6.0.0
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
           username: "${{ steps.split.outputs._0 }}"
