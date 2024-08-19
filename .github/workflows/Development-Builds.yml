@@ -45,7 +45,7 @@ jobs:
             
             SpigotMC: [`102500`](https://www.spigotmc.org/resources/102500/)
       - name: Legacy
-        uses: tsickert/discord-webhook@v5.4.0
+        uses: tsickert/discord-webhook@v6.0.0
         with:
           webhook-url: ${{ secrets.WEBHOOK_URL }}
           username: "${{ steps.split.outputs._0 }}"
